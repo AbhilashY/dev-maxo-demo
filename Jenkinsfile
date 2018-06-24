@@ -13,7 +13,7 @@ pipeline {
 	stage ('Compile Stage'){
 	    steps {
 	        withMaven(maven : 'Maven'){
-		    sh 'mvn clean package'
+		    bat 'mvn clean package'
 		}
 	    }
 	}
@@ -21,13 +21,13 @@ pipeline {
 	stage ('Deploy to Nexus'){
 	    steps {
 	        withMaven(maven : 'Maven'){
-		    sh 'mvn deploy'
+		    bat 'mvn deploy'
 		}
 	    }
 	}
 	stage ('Deploy to QA'){
 	    steps {
-	            sh 'sudo ansible-playbook /etc/ansible/main.yml'
+	           bat 'sudo ansible-playbook /etc/ansible/main.yml'
 	    }
 	}
 
